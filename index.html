@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Pixels Art</title>
+</head>
+
+<body>
+  <header>
+    <h1 id="main-title">Pixels Art</h1>
+  </header>
+  <main>
+    <h1 id="title">Paleta de Cores</h1>
+    <div id="palette-container">
+      <ul id="color-palette">
+        <li class="color selected" style="background-color: black;"></li>
+        <li class="color"></li>
+        <li class="color"></li>
+        <li class="color"></li>
+      </ul>
+      <div id="btn-colors">
+        <button id="button-random-color">Cores aleatórias</button>
+        <button id="clear-board">Limpar</button>
+      </div>
+    </div>
+    <div id="board-container">
+      <ul id="pixel-board"></ul>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
