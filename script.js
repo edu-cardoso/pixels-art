@@ -82,13 +82,17 @@ function createNewBoard() {
   const boardSizeInput = document.getElementById('board-size')
   const generateBoardBtn = document.getElementById('generate-board')
   generateBoardBtn.addEventListener('click', () => {
-    pixelBoard.innerHTML = ''
-    for (let i = 0; i < boardSizeInput.value; i++) {
-      createLine(boardSizeInput.value)
+    if (boardSizeInput.value === '') {
+      alert('Board inválido!')
     }
-    paintPixel()
+    if (boardSizeInput.value >= 10) {
+      pixelBoard.innerHTML = ''
+      for (let i = 0; i < boardSizeInput.value; i++) {
+        createLine(boardSizeInput.value)
+      }
+      paintPixel()
+    }
   })
-  
 }
 
 createNewBoard()
