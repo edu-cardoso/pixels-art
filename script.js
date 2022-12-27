@@ -22,24 +22,24 @@ randomColorBtn.addEventListener('click', randomColorPalette)
 
 const pixelBoard = document.getElementById('pixel-board')
 
-function createLine() {
+function createLine(size) {
   const line = document.createElement('li')
   line.className = 'line'
   pixelBoard.appendChild(line)
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < size; i++) {
     const pixel = document.createElement('div')
     pixel.className = 'pixel'
     line.appendChild(pixel)
   }
 }
 
-function createColumn() {
-  for (let i = 0; i < 12; i++) {
-    createLine()
+function createColumn(size) {
+  for (let i = 0; i < size; i++) {
+    createLine(12)
   }
 }
 
-createColumn()
+createColumn(12)
 
 function addSelectedClass() {
   for (let color of colorPalette) {
@@ -77,6 +77,21 @@ function clearBoard() {
 }
 
 clearBoard()
+
+function createNewBoard() {
+  const boardSizeInput = document.getElementById('board-size')
+  const generateBoardBtn = document.getElementById('generate-board')
+  generateBoardBtn.addEventListener('click', () => {
+    pixelBoard.innerHTML = ''
+    for (let i = 0; i < boardSizeInput.value; i++) {
+      createLine(boardSizeInput.value)
+    }
+    paintPixel()
+  })
+  
+}
+
+createNewBoard()
 
 
 

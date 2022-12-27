@@ -15,7 +15,7 @@ body {
 #palette-container {
   margin: 40px auto 0 auto;
   background-color: rgb(29, 1, 95);
-  width: 400px;
+  width: 700px;
   height: 150px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
 }
@@ -66,28 +66,19 @@ body {
   margin-top: 50px;
 }
 
-#btn-colors {
+#btns {
   display: flex;
-  justify-content: center;
+  justify-content: center
 }
 
-#button-random-color {
+#button-random-color, #clear-board, #generate-board  {
   font-family: 'Press Start 2P', cursive;
   padding: 15px 8px;
+  border: none;
+  background-color: rgb(0, 13, 199);
+  cursor: pointer;
+  font-size: 12px;
   margin-right: 10px;
-  border: none;
-  background-color: rgb(0, 13, 199);
-  cursor: pointer;
-  font-size: 12px;
-}
-
-#clear-board {
-  font-family: 'Press Start 2P', cursive;
-  padding: 15px 8px;
-  border: none;
-  background-color: rgb(0, 13, 199);
-  cursor: pointer;
-  font-size: 12px;
 }
 
 #pixel-board {
