@@ -15,8 +15,6 @@ function randomColorPalette() {
   }
 }
 
-randomColorPalette()
-
 const randomColorBtn = document.getElementById('button-random-color')
 randomColorBtn.addEventListener('click', randomColorPalette)
 
@@ -96,6 +94,47 @@ function createNewBoard() {
 }
 
 createNewBoard()
+
+
+let arrOfColors = []
+
+randomColorBtn.addEventListener('click', () => {
+  for (let color of colorPalette) {
+    setItem(color.style.backgroundColor)
+  }
+})
+
+function setItem(item) {
+  arrOfColors.push(item)
+  setItemOnDB()
+}
+
+function setItemOnDB() {
+  localStorage.setItem('colors', JSON.stringify(arrOfColors))
+}
+
+function getSavedColors() {
+  const savedColors = JSON.parse(localStorage.getItem('colors'))
+  for (let i = 0; i < savedColors.length; i++) {
+    colorPalette[i].style.backgroundColor = savedColors[i]
+  }
+}
+
+getSavedColors()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
