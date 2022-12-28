@@ -22,12 +22,6 @@ randomColorBtn.addEventListener('click', randomColorPalette)
 
 const pixelBoard = document.getElementById('pixel-board')
 
-generateBoardBtn.addEventListener('click', () => {
-  const gridSizeDB = localStorage.setItem('boardsize', boardSizeInput.value)
-})
-
-const savedGridSize = localStorage.getItem('boardsize')
-
 function createLine(size) {
   const line = document.createElement('li')
   line.className = 'line'
@@ -47,6 +41,36 @@ function createColumn(size) {
 
 createColumn(12)
 
+const pixels = document.getElementsByClassName('pixel')
+
+function paintPixel() {
+  for (let pixel of pixels) {
+    pixel.addEventListener('click', () => {
+      pixel.style.backgroundColor = document.querySelector('.selected').style.backgroundColor
+    })
+  }
+}
+
+paintPixel()
+
+generateBoardBtn.addEventListener('click', () => {
+  const gridSizeDB = localStorage.setItem('boardsize', boardSizeInput.value)
+})
+
+const savedGridSize = localStorage.getItem('boardsize')
+
+function savedBoardSize() {
+  if (localStorage.boardsize !== null) {
+    pixelBoard.innerHTML = ''
+    for (let i = 0; i < savedGridSize; i++) {
+      createLine(savedGridSize)
+    }
+  }
+  paintPixel()
+}
+
+savedBoardSize()
+
 function addSelectedClass() {
   for (let color of colorPalette) {
     color.addEventListener('click', () => {
@@ -60,18 +84,6 @@ function addSelectedClass() {
 }
 
 addSelectedClass()
-
-const pixels = document.getElementsByClassName('pixel')
-
-function paintPixel() {
-  for (let pixel of pixels) {
-    pixel.addEventListener('click', () => {
-      pixel.style.backgroundColor = document.querySelector('.selected').style.backgroundColor
-    })
-  }
-}
-
-paintPixel()
 
 function clearBoard() {
   const clearBoardBtn = document.getElementById('clear-board')
@@ -104,10 +116,12 @@ createNewBoard()
 
 let arrOfColors = []
 
+
 randomColorBtn.addEventListener('click', () => {
   for (let color of colorPalette) {
     setItem(color.style.backgroundColor)
   }
+  window.location.reload()
 })
 
 function setItem(item) {
@@ -128,17 +142,7 @@ function getSavedColors() {
 
 getSavedColors()
 
-function savedBoardSize() {
-  if (localStorage.boardsize !== null) {
-    pixelBoard.innerHTML = ''
-    for (let i = 0; i < savedGridSize; i++) {
-      createLine(savedGridSize)
-    }
-  }
-  paintPixel()
-}
 
-savedBoardSize()
 
 
 
