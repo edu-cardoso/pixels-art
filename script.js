@@ -1,4 +1,6 @@
 const colorPalette = document.getElementsByClassName('color')
+const boardSizeInput = document.getElementById('board-size')
+const generateBoardBtn = document.getElementById('generate-board')
 
 function generateRandomColor() {
   const letters = '0123456789ABCDEF';
@@ -19,6 +21,12 @@ const randomColorBtn = document.getElementById('button-random-color')
 randomColorBtn.addEventListener('click', randomColorPalette)
 
 const pixelBoard = document.getElementById('pixel-board')
+
+generateBoardBtn.addEventListener('click', () => {
+  const gridSizeDB = localStorage.setItem('boardsize', boardSizeInput.value)
+})
+
+const savedGridSize = localStorage.getItem('boardsize')
 
 function createLine(size) {
   const line = document.createElement('li')
@@ -77,13 +85,11 @@ function clearBoard() {
 clearBoard()
 
 function createNewBoard() {
-  const boardSizeInput = document.getElementById('board-size')
-  const generateBoardBtn = document.getElementById('generate-board')
   generateBoardBtn.addEventListener('click', () => {
     if (boardSizeInput.value === '') {
       alert('Board inválido!')
     }
-    if (boardSizeInput.value >= 10) {
+    if (boardSizeInput.value >= 10 && boardSizeInput.value <= 20) {
       pixelBoard.innerHTML = ''
       for (let i = 0; i < boardSizeInput.value; i++) {
         createLine(boardSizeInput.value)
@@ -121,6 +127,24 @@ function getSavedColors() {
 }
 
 getSavedColors()
+
+function savedBoardSize() {
+  if (localStorage.boardsize !== null) {
+    pixelBoard.innerHTML = ''
+    for (let i = 0; i < savedGridSize; i++) {
+      createLine(savedGridSize)
+    }
+  }
+  paintPixel()
+}
+
+savedBoardSize()
+
+
+
+
+
+
 
 
 
