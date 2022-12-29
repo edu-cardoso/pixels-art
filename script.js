@@ -106,6 +106,7 @@ function createNewBoard() {
       for (let i = 0; i < boardSizeInput.value; i++) {
         createLine(boardSizeInput.value)
       }
+      boardSizeInput.value = ''
       paintPixel()
     }
   })
@@ -113,16 +114,7 @@ function createNewBoard() {
 
 createNewBoard()
 
-
 let arrOfColors = []
-
-
-randomColorBtn.addEventListener('click', () => {
-  for (let color of colorPalette) {
-    setItem(color.style.backgroundColor)
-  }
-  window.location.reload()
-})
 
 function setItem(item) {
   arrOfColors.push(item)
@@ -133,6 +125,13 @@ function setItemOnDB() {
   localStorage.setItem('colors', JSON.stringify(arrOfColors))
 }
 
+randomColorBtn.addEventListener('click', () => {
+  arrOfColors = []
+  for (let color of colorPalette) {
+    setItem(color.style.backgroundColor)
+  }
+})
+
 function getSavedColors() {
   const savedColors = JSON.parse(localStorage.getItem('colors'))
   for (let i = 0; i < savedColors.length; i++) {
@@ -141,6 +140,12 @@ function getSavedColors() {
 }
 
 getSavedColors()
+
+
+
+
+
+
 
 
 
