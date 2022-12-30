@@ -12,7 +12,7 @@ body {
 #palette-container {
   margin: 30px auto 0 auto;
   background-color: rgb(249, 255, 159);
-  max-width: 650px;
+  max-width: 750px;
   height: 150px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.7);
 }
@@ -73,6 +73,7 @@ body {
 
 #button-random-color,
 #clear-board,
+#save-board,
 #generate-board {
   font-family: "Press Start 2P", cursive;
   padding: 15px 8px;

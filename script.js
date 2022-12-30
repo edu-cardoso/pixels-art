@@ -37,6 +37,7 @@ function createColumn(size) {
   for (let i = 0; i < size; i++) {
     createLine(12)
   }
+  paintPixel()
 }
 
 const pixels = document.getElementsByClassName('pixel')
@@ -51,9 +52,13 @@ function paintPixel() {
 
 paintPixel()
 
+
 generateBoardBtn.addEventListener('click', () => {
-  const gridSizeDB = localStorage.setItem('boardsize', boardSizeInput.value)
+  if (boardSizeInput.value !== '') {
+    const gridSizeDB = localStorage.setItem('boardsize', boardSizeInput.value) 
+  }
 })
+
 
 const savedGridSize = localStorage.getItem('boardsize')
 
@@ -67,7 +72,7 @@ function savedBoardSize() {
   paintPixel()
 }
 
-if(!localStorage.boardsize) {
+if (!localStorage.boardsize) {
   createColumn(12)
 } else {
   savedBoardSize()
@@ -90,6 +95,7 @@ addSelectedClass()
 function clearBoard() {
   const clearBoardBtn = document.getElementById('clear-board')
   clearBoardBtn.addEventListener('click', () => {
+    localStorage.removeItem('pixelBoard')
     for (let pixel of pixels) {
       pixel.style.backgroundColor = 'white'
     }
@@ -100,6 +106,7 @@ clearBoard()
 
 function createNewBoard() {
   generateBoardBtn.addEventListener('click', () => {
+    localStorage.removeItem('pixelBoard')
     if (boardSizeInput.value === '') {
       alert('Board inválido!')
     }
@@ -142,6 +149,31 @@ function getSavedColors() {
 }
 
 getSavedColors()
+
+let arrOfPixelColor = []
+
+function savePixelColor() {
+  const saveBoardBtn = document.getElementById('save-board')
+  saveBoardBtn.addEventListener('click', () => {
+    arrOfPixelColor = []
+    for (let pixel of pixels) {
+      arrOfPixelColor.push(pixel.style.backgroundColor)
+    }
+    localStorage.setItem('pixelBoard', JSON.stringify(arrOfPixelColor))
+  })
+}
+
+savePixelColor()
+
+function recoverPixelColor() {
+  const pixelSavedColors = JSON.parse(localStorage.getItem('pixelBoard'))
+  for (let i = 0; i < pixels.length; i++) {
+    pixels[i].style.backgroundColor = pixelSavedColors[i]
+  }
+}
+
+recoverPixelColor()
+
 
 
 
