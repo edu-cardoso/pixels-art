@@ -39,8 +39,6 @@ function createColumn(size) {
   }
 }
 
-createColumn(12)
-
 const pixels = document.getElementsByClassName('pixel')
 
 function paintPixel() {
@@ -69,7 +67,11 @@ function savedBoardSize() {
   paintPixel()
 }
 
-savedBoardSize()
+if(!localStorage.boardsize) {
+  createColumn(12)
+} else {
+  savedBoardSize()
+}
 
 function addSelectedClass() {
   for (let color of colorPalette) {
@@ -140,7 +142,6 @@ function getSavedColors() {
 }
 
 getSavedColors()
-
 
 
 
